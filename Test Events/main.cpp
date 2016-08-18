@@ -338,7 +338,7 @@ int main(int, char const**)
 
     // Load our font
     sf::Font font;
-    assert(!font.loadFromFile(resourcePath() + "sansation.ttf"));
+    assert(font.loadFromFile(resourcePath() + "sansation.ttf"));
 
     sf::CircleShape cursorShape;
     cursorShape.setRadius(20.f);
