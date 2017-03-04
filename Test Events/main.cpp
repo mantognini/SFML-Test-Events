@@ -482,6 +482,21 @@ int main(int, char const**)
                     LOGEvent(JoystickDisconnected);
                     break;
 
+                    LOGEvent(TouchBegan);
+                    LOGXY(event.touch);
+                    logger.log("finger: " + std::to_string(event.touch.finger));
+                    break;
+
+                    LOGEvent(TouchMoved);
+                    LOGXY(event.touch);
+                    logger.log("finger: " + std::to_string(event.touch.finger));
+                    break;
+
+                    LOGEvent(TouchEnded);
+                    LOGXY(event.touch);
+                    logger.log("finger: " + std::to_string(event.touch.finger));
+                    break;
+
                 default:
                     break;
                 }
