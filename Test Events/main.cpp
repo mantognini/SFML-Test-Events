@@ -183,8 +183,7 @@ class GraphicLogger : public sf::Drawable, public sf::Transformable
 {
 public:
     GraphicLogger(sf::Font const& font, unsigned int fontSize, unsigned int nbLines)
-        : font(font)
-        , logs(nbLines)
+        : logs(nbLines)
         , lines(nbLines)
     {
         for (unsigned int i = 0; i < lines.size(); ++i)
@@ -231,7 +230,6 @@ private:
     }
 
 private:
-    sf::Font const& font;
     std::deque<sf::String> logs;
     std::vector<sf::Text> lines;
 };
