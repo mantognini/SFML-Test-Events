@@ -158,6 +158,146 @@ std::string key2string(sf::Keyboard::Key key)
 #undef CASE
 }
 
+std::string scancode2string(sf::Keyboard::Scancode scancode)
+{
+#define CASE(id)                                                                                   \
+case sf::Keyboard::id:                                                                             \
+return #id
+
+    switch (scancode)
+    {
+        default:
+            CASE(sUnknown);
+
+            CASE(sA);
+            CASE(sB);
+            CASE(sC);
+            CASE(sD);
+            CASE(sE);
+            CASE(sF);
+            CASE(sG);
+            CASE(sH);
+            CASE(sI);
+            CASE(sJ);
+            CASE(sK);
+            CASE(sL);
+            CASE(sM);
+            CASE(sN);
+            CASE(sO);
+            CASE(sP);
+            CASE(sQ);
+            CASE(sR);
+            CASE(sS);
+            CASE(sT);
+            CASE(sU);
+            CASE(sV);
+            CASE(sW);
+            CASE(sX);
+            CASE(sY);
+            CASE(sZ);
+            CASE(sNum1);
+            CASE(sNum2);
+            CASE(sNum3);
+            CASE(sNum4);
+            CASE(sNum5);
+            CASE(sNum6);
+            CASE(sNum7);
+            CASE(sNum8);
+            CASE(sNum9);
+            CASE(sNum0);
+            CASE(sEnter);
+            CASE(sEscape);
+            CASE(sBackspace);
+            CASE(sTab);
+            CASE(sSpace);
+            CASE(sHyphen);
+            CASE(sEquals);
+            CASE(sLBracket);
+            CASE(sRBracket);
+            CASE(sBackslash);
+            CASE(sDash);
+            CASE(sSemicolon);
+            CASE(sQuote);
+            CASE(sGraveAccent);
+            CASE(sComma);
+            CASE(sPeriod);
+            CASE(sForwardSlash);
+            CASE(sF1);
+            CASE(sF2);
+            CASE(sF3);
+            CASE(sF4);
+            CASE(sF5);
+            CASE(sF6);
+            CASE(sF7);
+            CASE(sF8);
+            CASE(sF9);
+            CASE(sF10);
+            CASE(sF11);
+            CASE(sF12);
+            CASE(sF13);
+            CASE(sF14);
+            CASE(sF15);
+            CASE(sCapsLock);
+            CASE(sPrintScreen);
+            CASE(sScrollLock);
+            CASE(sPause);
+            CASE(sInsert);
+            CASE(sHome);
+            CASE(sPageUp);
+            CASE(sDelete);
+            CASE(sEnd);
+            CASE(sPageDown);
+            CASE(sRight);
+            CASE(sLeft);
+            CASE(sDown);
+            CASE(sUp);
+            CASE(sNumLock);
+            CASE(sDivide);
+            CASE(sMultiply);
+            CASE(sMinus);
+            CASE(sPlus);
+            CASE(sPadEquals);
+            CASE(sReturn);
+            CASE(sDecimal);
+            CASE(sNumpad1);
+            CASE(sNumpad2);
+            CASE(sNumpad3);
+            CASE(sNumpad4);
+            CASE(sNumpad5);
+            CASE(sNumpad6);
+            CASE(sNumpad7);
+            CASE(sNumpad8);
+            CASE(sNumpad9);
+            CASE(sNumpad0);
+            CASE(sReverseSolidus);
+            CASE(sApplication);
+            CASE(sExecute);
+            CASE(sHelp);
+            CASE(sMenu);
+            CASE(sSelect);
+            CASE(sStop);
+            CASE(sAgain);
+            CASE(sUndo);
+            CASE(sCut);
+            CASE(sCopy);
+            CASE(sPaste);
+            CASE(sFind);
+            CASE(sMute);
+            CASE(sVolumeUp);
+            CASE(sVolumeDown);
+            CASE(sLControl);
+            CASE(sLShift);
+            CASE(sLAlt);
+            CASE(sLSystem);
+            CASE(sRControl);
+            CASE(sRShift);
+            CASE(sRAlt);
+            CASE(sRSystem);
+    }
+
+#undef CASE
+}
+
 
 std::string button2string(sf::Mouse::Button button)
 {
@@ -506,8 +646,10 @@ int main(int, char const**)
                std::to_string(var.height) + ")")
 
 #define LOGKey(var)                                                                                \
-    logger.log(key2string(var.key.code) +                                                          \
+    logger.log(key2string(var.key.code) + " | " + scancode2string(var.key.scancode) +              \
+               + " [" + sf::Keyboard::localizedRepresentation(var.key.scancode) + "]" +            \
                (var.type == sf::Event::KeyPressed ? " was pressed" : " was released"))
+
 
 #define LOGButton(var)                                                                             \
     logger.log(button2string(var.mouseButton.button) +                                             \
@@ -705,10 +847,11 @@ int main(int, char const**)
             window.draw(logger);
 
         drawWindowCount(window, font);
-        drawBorder(window);
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::sLBracket))
+            drawBorder(window);
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
             drawGrid(window, 50);
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::sLShift))
             window.draw(cursorShape);
 
         // Update the window
