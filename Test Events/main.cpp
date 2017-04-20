@@ -23,10 +23,11 @@
 
 #include <SFML/Graphics.hpp>
 
-#include <map>
-#include <deque>
 #include <cassert>
+#include <clocale>
+#include <deque>
 #include <iostream>
+#include <map>
 
 #ifdef SFML_SYSTEM_MACOS
 #include "ResourcePath.hpp"
@@ -205,7 +206,7 @@ public:
         logs.pop_back();
         logs.push_front(msg);
 
-        std::cout << "Log: " << msg.toAnsiString() << std::endl;
+        std::cout << "Log: " << msg.toUtf8().c_str() << std::endl;
 
         updateLines();
     }
@@ -225,7 +226,8 @@ private:
         assert(logs.size() == lines.size());
         for (unsigned int i = 0; i < logs.size(); ++i)
         {
-            lines[i].setString(std::to_string(i) + ": " + logs[i]);
+            sf::String const str = sf::String(std::to_string(i)) + ": " + logs[i];
+            lines[i].setString(str);
         }
     }
 
@@ -233,6 +235,7 @@ private:
     std::deque<sf::String> logs;
     std::vector<sf::Text> lines;
 };
+
 
 template <class T>
 std::ostream& operator<<(std::ostream& out, sf::Vector2<T> const& v)
@@ -250,16 +253,8 @@ namespace
 
 
 
-void drawWindowCount(sf::RenderWindow& window)
+void drawWindowCount(sf::RenderWindow& window, sf::Font const& font)
 {
-    static sf::Font font;
-    static bool init = true;
-    if (init)
-    {
-        font.loadFromFile(resourcePath() + "sansation.ttf");
-        init = false;
-    }
-
     sf::Text text;
     text.setString(std::to_string(windowCount));
     text.setFont(font);
@@ -344,6 +339,8 @@ void printVideoModes()
 
 int main(int, char const**)
 {
+    std::setlocale(LC_ALL, "");
+
     printVideoModes();
 
     // Create the main window
@@ -358,7 +355,10 @@ int main(int, char const**)
 
     // Load our font
     sf::Font font;
-    assert(font.loadFromFile(resourcePath() + "sansation.ttf"));
+    // auto const file = "sansation.ttf";
+    auto const file = "FiraCode-Light.ttf";
+    // auto const file = "HelveticaNeue.ttf";
+    assert(font.loadFromFile(resourcePath() + file));
 
     sf::CircleShape cursorShape;
     cursorShape.setRadius(20.f);
@@ -550,10 +550,12 @@ int main(int, char const**)
 
         // Draw the logger
         window.draw(logger);
-        drawWindowCount(window);
+        drawWindowCount(window, font);
         drawBorder(window);
-        drawGrid(window, 50);
-        window.draw(cursorShape);
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
+            drawGrid(window, 50);
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
+            window.draw(cursorShape);
 
         // Update the window
         window.display();

@@ -13,6 +13,8 @@
 		0C22F31B1BC9431900581FDE /* nice_music.ogg in Resources */ = {isa = PBXBuildFile; fileRef = 0C22F31A1BC9431900581FDE /* nice_music.ogg */; };
 		0C22F31D1BC9431900581FDE /* sansation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0C22F31C1BC9431900581FDE /* sansation.ttf */; };
 		0C22F31F1BC9431900581FDE /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C22F31E1BC9431900581FDE /* icon.png */; };
+		0C6C8F431EA572760015263D /* FiraCode-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0C6C8F421EA572760015263D /* FiraCode-Light.ttf */; };
+		0CC627651EA88B3A0006553B /* HelveticaNeue.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0CC627641EA88B3A0006553B /* HelveticaNeue.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +27,8 @@
 		0C22F31A1BC9431900581FDE /* nice_music.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = nice_music.ogg; sourceTree = "<group>"; };
 		0C22F31C1BC9431900581FDE /* sansation.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sansation.ttf; sourceTree = "<group>"; };
 		0C22F31E1BC9431900581FDE /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		0C6C8F421EA572760015263D /* FiraCode-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FiraCode-Light.ttf"; sourceTree = "<group>"; };
+		0CC627641EA88B3A0006553B /* HelveticaNeue.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HelveticaNeue.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +81,8 @@
 		0C22F3171BC9431900581FDE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0CC627641EA88B3A0006553B /* HelveticaNeue.ttf */,
+				0C6C8F421EA572760015263D /* FiraCode-Light.ttf */,
 				0C22F3181BC9431900581FDE /* cute_image.jpg */,
 				0C22F31A1BC9431900581FDE /* nice_music.ogg */,
 				0C22F31C1BC9431900581FDE /* sansation.ttf */,
@@ -145,6 +151,8 @@
 				0C22F31F1BC9431900581FDE /* icon.png in Resources */,
 				0C22F31D1BC9431900581FDE /* sansation.ttf in Resources */,
 				0C22F31B1BC9431900581FDE /* nice_music.ogg in Resources */,
+				0CC627651EA88B3A0006553B /* HelveticaNeue.ttf in Resources */,
+				0C6C8F431EA572760015263D /* FiraCode-Light.ttf in Resources */,
 				0C22F3191BC9431900581FDE /* cute_image.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
