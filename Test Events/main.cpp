@@ -658,7 +658,18 @@ int main(int, char const**)
             }
         }
 
+
         joyInfo.update();
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::LSystem) ||
+            sf::Keyboard::isKeyPressed(sf::Keyboard::RSystem)) {
+            bool v = sf::Keyboard::isKeyPressed(sf::Keyboard::V);
+            bool c = sf::Keyboard::isKeyPressed(sf::Keyboard::C);
+
+            if (v && c) { /* no action */ }
+            else if (v) { logger.log(sf::Clipboard::getString()); }
+            else if (c) { sf::Clipboard::setString(L"∆ß∂ƒ¬qø");   }
+        }
 
         auto position = window.mapPixelToCoords(sf::Mouse::getPosition(window), window.getView());
         cursorShape.setPosition(position);
