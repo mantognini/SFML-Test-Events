@@ -26,8 +26,11 @@
 #include <cassert>
 #include <clocale>
 #include <deque>
+#include <iomanip>
 #include <iostream>
 #include <map>
+#include <limits>
+#include <sstream>
 
 #ifdef SFML_SYSTEM_MACOS
 #include "ResourcePath.hpp"
@@ -179,6 +182,28 @@ std::string button2string(sf::Mouse::Button button)
 }
 
 
+std::string axis2string(sf::Joystick::Axis axis)
+{
+#define CASE(id)                                                                                   \
+    case sf::Joystick::id:                                                                         \
+        return #id
+
+    switch (axis)
+    {
+        CASE(X);
+        CASE(Y);
+        CASE(Z);
+        CASE(R);
+        CASE(U);
+        CASE(V);
+        CASE(PovX);
+        CASE(PovY);
+    }
+
+#undef CASE
+}
+
+
 
 class GraphicLogger : public sf::Drawable, public sf::Transformable
 {
@@ -235,6 +260,81 @@ private:
     std::deque<sf::String> logs;
     std::vector<sf::Text> lines;
 };
+
+
+
+
+class JoystickTable : public sf::Drawable, public sf::Transformable
+{
+public:
+    JoystickTable(sf::Font const& font, unsigned int fontSize)
+    : font(font), fontSize(fontSize)
+    {
+        update();
+    }
+
+    void update()
+    {
+        std::function<float(sf::Joystick::Axis)> producer;
+        if (activeJoystickId == -1)
+            producer = [](sf::Joystick::Axis) -> float {
+                return std::numeric_limits<float>::quiet_NaN();
+            };
+        else
+            producer = [id = activeJoystickId](sf::Joystick::Axis axis) -> float {
+                return sf::Joystick::getAxisPosition(id, axis);
+            };
+
+        generateTable(producer);
+    }
+
+    void draw(sf::RenderTarget& target, sf::RenderStates states) const override
+    {
+        states.transform *= getTransform();
+        for (auto const& line : strings)
+            target.draw(line, states);
+    }
+
+    void setJoystick(unsigned int idx) { activeJoystickId = idx; }
+
+private:
+    sf::Text generateText(sf::Joystick::Axis axis, int y, float value) const
+    {
+        sf::Text text;
+
+        text.setFont(font);
+        text.setCharacterSize(fontSize);
+        text.setFillColor(sf::Color::White);
+
+        text.setPosition(0, y);
+
+        std::stringstream ss;
+        ss << axis2string(axis) << ": " << std::fixed << std::setprecision(3) << value;
+        text.setString(ss.str());
+
+        return text;
+    }
+
+    void generateTable(std::function<float(sf::Joystick::Axis)> producer)
+    {
+        strings.clear();
+
+        // Insert titles + values
+        auto const STEP = fontSize + 3;
+        for (int i = 0; i < sf::Joystick::AxisCount; ++i) {
+            auto axis = static_cast<sf::Joystick::Axis>(i);
+            auto y = i * STEP;
+            strings.push_back(generateText(axis, y, producer(axis)));
+        }
+    }
+
+private:
+    std::vector<sf::Text> strings;
+    unsigned int activeJoystickId = -1;
+    sf::Font const& font;
+    unsigned int fontSize;
+};
+
 
 
 template <class T>
@@ -368,9 +468,14 @@ int main(int, char const**)
     // Create a logger
     GraphicLogger logger{ font, 20, 20 };
     logger.setPosition(50, 50);
+    JoystickTable joyInfo{ font, 20 };
+    joyInfo.setPosition(50, 50);
+    bool displayJoystickTable = false;
 
 
     sf::Event::EventType lastType = sf::Event::Count;
+
+    std::map<sf::Joystick::Axis, sf::Clock> axisClocks;
 
     // Start the game loop
     while (window.isOpen())
@@ -474,9 +579,16 @@ int main(int, char const**)
                     break;
 
                     LOGEvent(JoystickMoved);
+                    if (axisClocks[event.joystickMove.axis].getElapsedTime() > sf::seconds(2)) {
+                        logger.log("\tid:" + std::to_string(event.joystickMove.joystickId));
+                        logger.log("\tposition:" + std::to_string(event.joystickMove.position));
+                        logger.log("\taxis:" + axis2string(event.joystickMove.axis));
+                        axisClocks[event.joystickMove.axis].restart();
+                    }
                     break;
 
                     LOGEvent(JoystickConnected);
+                    joyInfo.setJoystick(event.joystickConnect.joystickId);
                     break;
 
                     LOGEvent(JoystickDisconnected);
@@ -538,9 +650,15 @@ int main(int, char const**)
                     } else LOGXY(window.getSize());
                     break;
 
+                case sf::Keyboard::J:
+                    displayJoystickTable = !displayJoystickTable;
+                    break;
+
                 }
             }
         }
+
+        joyInfo.update();
 
         auto position = window.mapPixelToCoords(sf::Mouse::getPosition(window), window.getView());
         cursorShape.setPosition(position);
@@ -548,8 +666,12 @@ int main(int, char const**)
         // Clear screen
         window.clear();
 
-        // Draw the logger
-        window.draw(logger);
+        // Draw the logger/joystick table
+        if (displayJoystickTable)
+            window.draw(joyInfo);
+        else
+            window.draw(logger);
+
         drawWindowCount(window, font);
         drawBorder(window);
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
