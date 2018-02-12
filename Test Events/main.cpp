@@ -472,6 +472,7 @@ int main(int, char const**)
     joyInfo.setPosition(50, 50);
     bool displayJoystickTable = false;
 
+    sf::Cursor cursor;
 
     sf::Event::EventType lastType = sf::Event::Count;
 
@@ -605,6 +606,26 @@ int main(int, char const**)
                 switch (event.key.code)
                 {
                 default:
+                    break;
+
+                case sf::Keyboard::Num1:
+                    assert(cursor.loadFromSystem(sf::Cursor::Arrow));
+                    window.setMouseCursor(cursor);
+                    break;
+
+                case sf::Keyboard::Num2:
+                    assert(cursor.loadFromSystem(sf::Cursor::Cross));
+                    window.setMouseCursor(cursor);
+                    break;
+
+                case sf::Keyboard::Num3:
+                    assert(cursor.loadFromSystem(sf::Cursor::Hand));
+                    window.setMouseCursor(cursor);
+                    break;
+
+                case sf::Keyboard::Num4:
+                    assert(cursor.loadFromPixels(icon.getPixelsPtr(), icon.getSize(), icon.getSize() / 2u));
+                    window.setMouseCursor(cursor);
                     break;
 
                 case sf::Keyboard::Escape:
