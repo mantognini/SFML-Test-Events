@@ -167,132 +167,132 @@ return #id
     switch (scancode)
     {
         default:
-            CASE(sUnknown);
+            CASE(ScanUnknown);
 
-            CASE(sA);
-            CASE(sB);
-            CASE(sC);
-            CASE(sD);
-            CASE(sE);
-            CASE(sF);
-            CASE(sG);
-            CASE(sH);
-            CASE(sI);
-            CASE(sJ);
-            CASE(sK);
-            CASE(sL);
-            CASE(sM);
-            CASE(sN);
-            CASE(sO);
-            CASE(sP);
-            CASE(sQ);
-            CASE(sR);
-            CASE(sS);
-            CASE(sT);
-            CASE(sU);
-            CASE(sV);
-            CASE(sW);
-            CASE(sX);
-            CASE(sY);
-            CASE(sZ);
-            CASE(sNum1);
-            CASE(sNum2);
-            CASE(sNum3);
-            CASE(sNum4);
-            CASE(sNum5);
-            CASE(sNum6);
-            CASE(sNum7);
-            CASE(sNum8);
-            CASE(sNum9);
-            CASE(sNum0);
-            CASE(sEnter);
-            CASE(sEscape);
-            CASE(sBackspace);
-            CASE(sTab);
-            CASE(sSpace);
-            CASE(sHyphen);
-            CASE(sEquals);
-            CASE(sLBracket);
-            CASE(sRBracket);
-            CASE(sBackslash);
-            CASE(sDash);
-            CASE(sSemicolon);
-            CASE(sQuote);
-            CASE(sGraveAccent);
-            CASE(sComma);
-            CASE(sPeriod);
-            CASE(sForwardSlash);
-            CASE(sF1);
-            CASE(sF2);
-            CASE(sF3);
-            CASE(sF4);
-            CASE(sF5);
-            CASE(sF6);
-            CASE(sF7);
-            CASE(sF8);
-            CASE(sF9);
-            CASE(sF10);
-            CASE(sF11);
-            CASE(sF12);
-            CASE(sF13);
-            CASE(sF14);
-            CASE(sF15);
-            CASE(sCapsLock);
-            CASE(sPrintScreen);
-            CASE(sScrollLock);
-            CASE(sPause);
-            CASE(sInsert);
-            CASE(sHome);
-            CASE(sPageUp);
-            CASE(sDelete);
-            CASE(sEnd);
-            CASE(sPageDown);
-            CASE(sRight);
-            CASE(sLeft);
-            CASE(sDown);
-            CASE(sUp);
-            CASE(sNumLock);
-            CASE(sDivide);
-            CASE(sMultiply);
-            CASE(sMinus);
-            CASE(sPlus);
-            CASE(sPadEquals);
-            CASE(sReturn);
-            CASE(sDecimal);
-            CASE(sNumpad1);
-            CASE(sNumpad2);
-            CASE(sNumpad3);
-            CASE(sNumpad4);
-            CASE(sNumpad5);
-            CASE(sNumpad6);
-            CASE(sNumpad7);
-            CASE(sNumpad8);
-            CASE(sNumpad9);
-            CASE(sNumpad0);
-            CASE(sReverseSolidus);
-            CASE(sApplication);
-            CASE(sExecute);
-            CASE(sHelp);
-            CASE(sMenu);
-            CASE(sSelect);
-            CASE(sStop);
-            CASE(sAgain);
-            CASE(sUndo);
-            CASE(sCut);
-            CASE(sCopy);
-            CASE(sPaste);
-            CASE(sFind);
-            CASE(sMute);
-            CASE(sVolumeUp);
-            CASE(sVolumeDown);
-            CASE(sLControl);
-            CASE(sLShift);
-            CASE(sLAlt);
-            CASE(sLSystem);
-            CASE(sRControl);
-            CASE(sRShift);
-            CASE(sRAlt);
-            CASE(sRSystem);
+            CASE(ScanA);
+            CASE(ScanB);
+            CASE(ScanC);
+            CASE(ScanD);
+            CASE(ScanE);
+            CASE(ScanF);
+            CASE(ScanG);
+            CASE(ScanH);
+            CASE(ScanI);
+            CASE(ScanJ);
+            CASE(ScanK);
+            CASE(ScanL);
+            CASE(ScanM);
+            CASE(ScanN);
+            CASE(ScanO);
+            CASE(ScanP);
+            CASE(ScanQ);
+            CASE(ScanR);
+            CASE(ScanS);
+            CASE(ScanT);
+            CASE(ScanU);
+            CASE(ScanV);
+            CASE(ScanW);
+            CASE(ScanX);
+            CASE(ScanY);
+            CASE(ScanZ);
+            CASE(ScanNum1);
+            CASE(ScanNum2);
+            CASE(ScanNum3);
+            CASE(ScanNum4);
+            CASE(ScanNum5);
+            CASE(ScanNum6);
+            CASE(ScanNum7);
+            CASE(ScanNum8);
+            CASE(ScanNum9);
+            CASE(ScanNum0);
+            CASE(ScanEnter);
+            CASE(ScanEscape);
+            CASE(ScanBackspace);
+            CASE(ScanTab);
+            CASE(ScanSpace);
+            CASE(ScanHyphen);
+            CASE(ScanEquals);
+            CASE(ScanLBracket);
+            CASE(ScanRBracket);
+            CASE(ScanBackslash);
+            CASE(ScanDash);
+            CASE(ScanSemicolon);
+            CASE(ScanQuote);
+            CASE(ScanGraveAccent);
+            CASE(ScanComma);
+            CASE(ScanPeriod);
+            CASE(ScanForwardSlash);
+            CASE(ScanF1);
+            CASE(ScanF2);
+            CASE(ScanF3);
+            CASE(ScanF4);
+            CASE(ScanF5);
+            CASE(ScanF6);
+            CASE(ScanF7);
+            CASE(ScanF8);
+            CASE(ScanF9);
+            CASE(ScanF10);
+            CASE(ScanF11);
+            CASE(ScanF12);
+            CASE(ScanF13);
+            CASE(ScanF14);
+            CASE(ScanF15);
+            CASE(ScanCapsLock);
+            CASE(ScanPrintScreen);
+            CASE(ScanScrollLock);
+            CASE(ScanPause);
+            CASE(ScanInsert);
+            CASE(ScanHome);
+            CASE(ScanPageUp);
+            CASE(ScanDelete);
+            CASE(ScanEnd);
+            CASE(ScanPageDown);
+            CASE(ScanRight);
+            CASE(ScanLeft);
+            CASE(ScanDown);
+            CASE(ScanUp);
+            CASE(ScanNumLock);
+            CASE(ScanDivide);
+            CASE(ScanMultiply);
+            CASE(ScanMinus);
+            CASE(ScanPlus);
+            CASE(ScanPadEquals);
+            CASE(ScanReturn);
+            CASE(ScanDecimal);
+            CASE(ScanNumpad1);
+            CASE(ScanNumpad2);
+            CASE(ScanNumpad3);
+            CASE(ScanNumpad4);
+            CASE(ScanNumpad5);
+            CASE(ScanNumpad6);
+            CASE(ScanNumpad7);
+            CASE(ScanNumpad8);
+            CASE(ScanNumpad9);
+            CASE(ScanNumpad0);
+            CASE(ScanReverseSolidus);
+            CASE(ScanApplication);
+            CASE(ScanExecute);
+            CASE(ScanHelp);
+            CASE(ScanMenu);
+            CASE(ScanSelect);
+            CASE(ScanStop);
+            CASE(ScanAgain);
+            CASE(ScanUndo);
+            CASE(ScanCut);
+            CASE(ScanCopy);
+            CASE(ScanPaste);
+            CASE(ScanFind);
+            CASE(ScanMute);
+            CASE(ScanVolumeUp);
+            CASE(ScanVolumeDown);
+            CASE(ScanLControl);
+            CASE(ScanLShift);
+            CASE(ScanLAlt);
+            CASE(ScanLSystem);
+            CASE(ScanRControl);
+            CASE(ScanRShift);
+            CASE(ScanRAlt);
+            CASE(ScanRSystem);
     }
 
 #undef CASE
@@ -647,7 +647,7 @@ int main(int, char const**)
 
 #define LOGKey(var)                                                                                \
     logger.log(key2string(var.key.code) + " | " + scancode2string(var.key.scancode) +              \
-               + " [" + sf::Keyboard::localizedRepresentation(var.key.scancode) + "]" +            \
+               + " [" + sf::Keyboard::getDescription(var.key.scancode) + "]" +            \
                (var.type == sf::Event::KeyPressed ? " was pressed" : " was released"))
 
 
@@ -847,11 +847,14 @@ int main(int, char const**)
             window.draw(logger);
 
         drawWindowCount(window, font);
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::sLBracket))
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl))
             drawBorder(window);
+
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
             drawGrid(window, 50);
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::sLShift))
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
             window.draw(cursorShape);
 
         // Update the window
