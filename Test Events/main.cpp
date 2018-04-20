@@ -26,6 +26,7 @@
 #include <cassert>
 #include <clocale>
 #include <deque>
+#include <functional>
 #include <iomanip>
 #include <iostream>
 #include <map>
