@@ -624,6 +624,21 @@ int main(int, char const**)
                     break;
 
                 case sf::Keyboard::Num4:
+                    assert(cursor.loadFromSystem(sf::Cursor::SizeBottomLeftTopRight));
+                    window.setMouseCursor(cursor);
+                    break;
+
+                case sf::Keyboard::Num5:
+                    assert(cursor.loadFromSystem(sf::Cursor::SizeTopLeftBottomRight));
+                    window.setMouseCursor(cursor);
+                    break;
+
+                case sf::Keyboard::Num6:
+                    assert(cursor.loadFromSystem(sf::Cursor::Help));
+                    window.setMouseCursor(cursor);
+                    break;
+
+                case sf::Keyboard::Num0:
                     assert(cursor.loadFromPixels(icon.getPixelsPtr(), icon.getSize(), icon.getSize() / 2u));
                     window.setMouseCursor(cursor);
                     break;
